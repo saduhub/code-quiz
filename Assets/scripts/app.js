@@ -11,6 +11,8 @@ let feedback = document.querySelector('#feedback');
 let initialsDiv = document.querySelector("#initials");
 let initialsInput = document.querySelector("#initialsInput");
 let submitBtn = document.querySelector('#submit');
+let gameOver = document.querySelector('#gameOver');
+let retry = document.querySelector('#retry');
 let highScoreDiv = document.querySelector('#highScoreDiv');
 let scoreList = document.querySelector('#scoreList');
 let goBack = document.querySelector('#goBack');
@@ -18,6 +20,7 @@ let clear = document.querySelector('#clear');
 questionDiv.style.display = 'none';
 initialsDiv.style.display = 'none';
 highScoreDiv.style.display = 'none';
+gameOver.style.display = 'none';
 
 let questions = {
     questionArray: ['2+2?', '3+3', '4+4', '5+5', '6+6', "filler"],
@@ -30,7 +33,7 @@ let answers = [['9','6', '4', '10'],['6','7', '20', '100'], ['10','20','30','8']
 
 let correctAnswers = ['filler','4', '6', '8', '10', '12'] 
 
-let secondsLeft = 100;
+let secondsLeft = 50;
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
 startBtn.addEventListener('click', function() {
@@ -51,8 +54,11 @@ startBtn.addEventListener('click', function() {
         spanSec.textContent = secondsLeft;
         if (secondsLeft == 0) {
             clearInterval(timerStart);
-            initialsDiv.style.display = 'block';
             questionDiv.style.display = 'none';
+            gameOver.firstElementChild.textContent = "Game Over! You ran out of time!"
+            gameOver.style.display = 'block';
+            initialsDiv.style.display = 'none';
+            headerDiv.style.display = 'none';
             let score = secondsLeft
             headerP.textContent = `Score: ${score}`
         }
@@ -65,9 +71,9 @@ startBtn.addEventListener('click', function() {
 answerChoices.forEach(function(answerChoice) {
     answerChoice.addEventListener('click', function() {
         if (answerChoice.textContent == correctAnswers[questionCounter]) {
-            feedback.textContent = "Correct!";
+            feedback.textContent = 'Correct!';
         } else {
-            feedback.textContent = "Wrong!";
+            feedback.textContent = 'Wrong!';
             secondsLeft = secondsLeft - 20;
         }
 
@@ -98,22 +104,32 @@ answerChoices.forEach(function(answerChoice) {
 
             clearInterval(updateFinal);
         }
+        if (secondsLeft <= 0) {
+            clearInterval(timerStart);
+            gameOver.style.display = 'block';
+            initialsDiv.style.display = 'none';
+            headerDiv.style.display = 'none';
+            questionDiv.style.display = 'none';
+        }
     })
 })
 
 let updateScores = function() {
     let scoreObjectArray = [];
-    for (let key in localStorage) {
-        let scoreObject = JSON.parse(localStorage.getItem(key));
+    for (let i = 0; i < localStorage.length; i++ ) {
+        let keyNumber= localStorage.key(i)
+        let scoreObject = JSON.parse(localStorage.getItem(keyNumber));
         scoreObjectArray.push(scoreObject);
     }
 
-    // scoreObjectArray.sort() need to sort array
+    scoreObjectArray.sort((a, b) => {
+        return b.score - a.score;
+    })
 
-    for (let object in scoreObjectArray) {
-        let scoreObject = JSON.parse(localStorage.getItem(key));
-        let scoreInitials = scoreObject.initials;
-        let score = scoreObject.score;
+    for (let i = 0; i < scoreObjectArray.length; i++) {
+        // let scoreObject = JSON.parse(localStorage.getItem(key));
+        let scoreInitials = scoreObjectArray[i].initials;
+        let score = scoreObjectArray[i].score;
         let li = document.createElement('li');
         li.textContent = `${scoreInitials}: ${score}`;
         scoreList.appendChild(li);
@@ -133,6 +149,10 @@ submitBtn.addEventListener('click', function(event) {
         headerDiv.style.display = 'none';
         updateScores();
     }
+})
+
+retry.addEventListener('click', function() {
+    location.reload();
 })
 
 highScoreLink.addEventListener('click', function() {
