@@ -9,40 +9,49 @@
     <title>Document</title>
 </head>
 <body>
-    <header id="headerDiv">
-        <p id="highScoreLink">View High Scores</p>
-        <p id="headerParagraph">Time left: <span id="secSpan"></span></p>
+    <!-- header to dsiplay High Scores Link and time left -->
+    <header id="header-div">
+        <p id="highScore-link">View High Scores</p>
+        <p id="header-paragraph">Time left: <span id="sec-span">N/A</span></p>
     </header>
+    <!-- div to display home -->
     <div id="home">
         <h1>Hello</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sequi molestias suscipit, esse sit possimus, facere ab quaerat, expedita magnam pariatur! Optio eum amet pariatur unde recusandae assumenda accusantium saepe.</p>
         <button id="start">Start</button>
     </div>
+    <!-- div to display questions as they are answered -->
     <div id="question">
-        <h2 id="questionH1"></h2>
+        <h2 id="question-h1"></h2>
         <ol>
             <button class="answer"></button>
             <button class="answer"></button>
             <button class="answer"></button>
             <button class="answer"></button>
         </ol>
-        <p id="feedback"></p>
     </div>
+    <!-- div displayed at the end of the quiz to submit score -->
     <div id="initials">
         <h3>Test Complete</h3>
-        <label for="initialsInput">Enter initials here:</label>
-        <input type="text" name="initials" id="initialsInput" required>
+        <label for="initials-input">Enter initials here:</label>
+        <input type="text" name="initials" id="initials-input" required>
         <button id="submit">submit</button>
     </div>
-    <div id="gameOver">
+    <!-- displays if user got the question right/wrong -->
+    <div>
+        <p id="feedback"></p>
+    </div>
+    <!-- game over display (also used to display if user runs out of time) -->
+    <div id="game-over">
         <p>Game Over! Your score fell below 0!</p>
         <button id="retry">Retry</button>
     </div>
-    <div id="highScoreDiv">
+    <!-- Displays list of high scores. Populated by JS -->
+    <div id="highScore-div">
         <h4>High Scores</h4>
-        <ol id="scoreList">
+        <ol id="score-list">
         </ol>
-        <button id="goBack">Go back</button>
+        <button id="go-back">Go back</button>
         <button id="clear">Clear</button>
     </div>
     <script src="Assets/scripts/app.js"></script>
