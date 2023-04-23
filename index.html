@@ -9,9 +9,9 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <a href="high-scores">View High Scores</a>
-        <p id="headerParagraph">Time: <span id="secSpan"></span></p>
+    <header id="headerDiv">
+        <p id="highScoreLink">View High Scores</p>
+        <p id="headerParagraph">Time left: <span id="secSpan"></span></p>
     </header>
     <div id="home">
         <h1>Hello</h1>
@@ -19,7 +19,7 @@
         <button id="start">Start</button>
     </div>
     <div id="question">
-        <h1 id="questionH1"></h1>
+        <h2 id="questionH1"></h2>
         <ol>
             <button class="answer"></button>
             <button class="answer"></button>
@@ -29,10 +29,17 @@
         <p id="feedback"></p>
     </div>
     <div id="initials">
-        <h1>Test Complete</h1>
+        <h3>Test Complete</h3>
         <label for="initialsInput">Enter initials here:</label>
-        <input type="text" name="initials" id="initialsInput">
+        <input type="text" name="initials" id="initialsInput" required>
         <button id="submit">submit</button>
+    </div>
+    <div id="highScoreDiv">
+        <h4>High Scores</h4>
+        <ol id="scoreList">
+        </ol>
+        <button id="goBack">Go back</button>
+        <button id="clear">Clear</button>
     </div>
     <script src="Assets/scripts/app.js"></script>
 </body>

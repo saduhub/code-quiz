@@ -1,28 +1,42 @@
-let headerP = document.querySelector('#headerParagraph')
-let spanSec = document.querySelector('#secSpan')
+let headerDiv = document.querySelector('#headerDiv');
+let highScoreLink = document.querySelector('#highScoreLink');
+let headerP = document.querySelector('#headerParagraph');
+let spanSec = document.querySelector('#secSpan');
 let homeDiv = document.querySelector('#home');
 let startBtn = document.querySelector('#start');
 let questionDiv = document.querySelector('#question');
 let questionH1 = document.querySelector('#questionH1');
 let answerChoices = document.querySelectorAll('.answer');
 let feedback = document.querySelector('#feedback');
-let initialsDiv = document.querySelector("#initials")
+let initialsDiv = document.querySelector("#initials");
+let initialsInput = document.querySelector("#initialsInput");
+let submitBtn = document.querySelector('#submit');
+let highScoreDiv = document.querySelector('#highScoreDiv');
+let scoreList = document.querySelector('#scoreList');
+let goBack = document.querySelector('#goBack');
+let clear = document.querySelector('#clear');
 questionDiv.style.display = 'none';
 initialsDiv.style.display = 'none';
+highScoreDiv.style.display = 'none';
 
 let questions = {
     questionArray: ['2+2?', '3+3', '4+4', '5+5', '6+6', "filler"],
 }
 let questionCounter = 0;
-
+// declare timerstart outside so that it can be sopped from anywhere
+let timerStart;
+let score;
 let answers = [['9','6', '4', '10'],['6','7', '20', '100'], ['10','20','30','8'], ['10','20','30','8'], ['10','12','30','8'], "filler"]
 
-let secondsLeft = 10000000;
+let correctAnswers = ['filler','4', '6', '8', '10', '12'] 
+
+let secondsLeft = 100;
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
 startBtn.addEventListener('click', function() {
     homeDiv.style.display = 'none';
     questionDiv.style.display = 'block';
+    highScoreLink.style.display = 'none'
     // popuate the question
     questionH1.textContent = questions.questionArray[questionCounter];
     // populate the options using for each since answerChoices is a nodeList(datastructure returned by the window method. Looks like, but is not an array). .length is for arrays and strings
@@ -32,11 +46,16 @@ startBtn.addEventListener('click', function() {
     // increase question counter to access new question and answers
     questionCounter++;    
     // start timer
-    let timerStart;
-
     timerStart = setInterval(function() {
         secondsLeft--;
         spanSec.textContent = secondsLeft;
+        if (secondsLeft == 0) {
+            clearInterval(timerStart);
+            initialsDiv.style.display = 'block';
+            questionDiv.style.display = 'none';
+            let score = secondsLeft
+            headerP.textContent = `Score: ${score}`
+        }
     }, 1000)
 
 })
@@ -45,6 +64,14 @@ startBtn.addEventListener('click', function() {
 // THEN I am presented with another question
 answerChoices.forEach(function(answerChoice) {
     answerChoice.addEventListener('click', function() {
+        if (answerChoice.textContent == correctAnswers[questionCounter]) {
+            feedback.textContent = "Correct!";
+        } else {
+            feedback.textContent = "Wrong!";
+            secondsLeft = secondsLeft - 20;
+        }
+
+
         // re-popuate the question
         questionH1.textContent = questions.questionArray[questionCounter];
         // populate the options using for each since answerChoices is a nodeList(datastructure returned by the window method. Looks like, but is not an array). .length is for arrays and strings
@@ -57,9 +84,71 @@ answerChoices.forEach(function(answerChoice) {
         if (questionCounter == 6) {
             initialsDiv.style.display = 'block';
             questionDiv.style.display = 'none';
-            let score = secondsLeft
+
+            let updateFinal;
+            score = secondsLeft
             headerP.textContent = `Score: ${score}`
+            clearInterval(timerStart);
+
+            updateFinal = setInterval( function () {
+                score = secondsLeft
+                headerP.textContent = `Score: ${score}`
+                clearInterval(timerStart); 
+            }, 1000)
+
+            clearInterval(updateFinal);
         }
     })
 })
+
+let updateScores = function() {
+    let scoreObjectArray = [];
+    for (let key in localStorage) {
+        let scoreObject = JSON.parse(localStorage.getItem(key));
+        scoreObjectArray.push(scoreObject);
+    }
+
+    // scoreObjectArray.sort() need to sort array
+
+    for (let object in scoreObjectArray) {
+        let scoreObject = JSON.parse(localStorage.getItem(key));
+        let scoreInitials = scoreObject.initials;
+        let score = scoreObject.score;
+        let li = document.createElement('li');
+        li.textContent = `${scoreInitials}: ${score}`;
+        scoreList.appendChild(li);
+    }
+}
+
+submitBtn.addEventListener('click', function(event) {
+    let storedInitials = initialsInput.value;
+    if (storedInitials.length === 0) {
+        event.preventDefault();
+        alert("Please enter inititals");
+    } else {
+        let timeStamp = Date.now().toString();
+        localStorage.setItem(timeStamp, JSON.stringify({initials: storedInitials, score: score}));
+        highScoreDiv.style.display = 'block';
+        initialsDiv.style.display = 'none';
+        headerDiv.style.display = 'none';
+        updateScores();
+    }
+})
+
+highScoreLink.addEventListener('click', function() {
+    highScoreDiv.style.display = 'block';
+    homeDiv.style.display = 'none';
+    headerDiv.style.display = 'none';
+    updateScores();
+})
+goBack.addEventListener('click', function() {
+    location.reload();
+})
+clear.addEventListener('click', function() {
+    localStorage.clear();
+    while (scoreList.firstChild) {
+        scoreList.removeChild(scoreList.firstChild)
+    }
+})
+
 
