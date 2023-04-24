@@ -143,7 +143,7 @@ submitBtn.addEventListener('click', function(event) {
     let storedInitials = initialsInput.value;
     if (storedInitials.length === 0) {
         event.preventDefault();
-        alert('Please enter inititals');
+        alert('Please enter name!');
     } else {
         // each sudmission will be differentiated, even if it is the same user(key). Needs to be string to store.
         let timeStamp = Date.now().toString();

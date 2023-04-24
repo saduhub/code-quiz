@@ -3,51 +3,43 @@ body {
     background-color: #386641;
     color: #f2e8cf;
 }
-
+/* Header */
 #header-div {
     padding: 20px;
     display: flex;
     justify-content: space-around;
 }
-
 #header-div > #highscore-link {
     color: #ccff33;
 }
-
 #highscore-link:hover {
     cursor: pointer;
 }
-
+/* Home */
 #home {
     text-align: center;
     padding: 20px;
 }
-
 #home > p {
     padding: 20px;
     max-width: 600px;
     margin: auto;
 }
-
+/* Question */
 #question {
     text-align: center;
     padding: 20px;
 }
-
 #question ol {
     max-width: 400px;
     margin: auto;
 }
-
-#question button {
-    margin: 5px;
-    padding: 5px;
-    display: block;
+#buttons-question {
+    margin-top: 20px;
 }
-
 button {
-background-color: #bc4749;
   color: #f2e8cf;
+  background-color: #bc4749;
   font-size: 16px;
   padding: 12px 24px;
   margin: 10px;
@@ -57,39 +49,36 @@ background-color: #bc4749;
   border-radius: 4px;
   font-size: large;
 }
-
 button:hover {
     background-color: #d85f61; 
     color: #f0d197;
   }
-
+/* Feedback */
 #feedback {
     max-width: 400px;
     margin: auto;
     text-align: center;
 }
-
+/* Submit Score */
 #initials {
     text-align: center;
     padding: 20px;
 }
-
 #initials * {
     display: block;
     margin: 10px auto;
 }
-
+/* Scores table */
 #highscore-div {
     text-align: center;
     padding: 20px;
 }
-
 #highscore-div h3, #highscore-div ol {
     display: block;
     margin: 10px auto;
     font-size: 24px;
 }
-
+/* Look good on phones */
 @media (max-width: 540px) {
     body {
         padding: 5px;
@@ -106,6 +95,4 @@ button:hover {
         padding: 10px;
         text-align: center;
     }
-
-
   }
