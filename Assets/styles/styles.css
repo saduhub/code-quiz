@@ -1,0 +1,111 @@
+body {
+    padding: 50px;
+    background-color: #386641;
+    color: #f2e8cf;
+}
+
+#header-div {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#header-div > #highscore-link {
+    color: #ccff33;
+}
+
+#highscore-link:hover {
+    cursor: pointer;
+}
+
+#home {
+    text-align: center;
+    padding: 20px;
+}
+
+#home > p {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
+#question {
+    text-align: center;
+    padding: 20px;
+}
+
+#question ol {
+    max-width: 400px;
+    margin: auto;
+}
+
+#question button {
+    margin: 5px;
+    padding: 5px;
+    display: block;
+}
+
+button {
+background-color: #bc4749;
+  color: #f2e8cf;
+  font-size: 16px;
+  padding: 12px 24px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  border-radius: 4px;
+  font-size: large;
+}
+
+button:hover {
+    background-color: #d85f61; 
+    color: #f0d197;
+  }
+
+#feedback {
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+#initials {
+    text-align: center;
+    padding: 20px;
+}
+
+#initials * {
+    display: block;
+    margin: 10px auto;
+}
+
+#highscore-div {
+    text-align: center;
+    padding: 20px;
+}
+
+#highscore-div h3, #highscore-div ol {
+    display: block;
+    margin: 10px auto;
+    font-size: 24px;
+}
+
+@media (max-width: 540px) {
+    body {
+        padding: 5px;
+    }
+
+    #header-div {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        margin: auto;
+    }
+
+    #header-div p {
+        padding: 10px;
+        text-align: center;
+    }
+
+
+  }

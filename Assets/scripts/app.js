@@ -1,6 +1,6 @@
 // Header
 let headerDiv = document.querySelector('#header-div');
-let highScoreLink = document.querySelector('#highScore-link');
+let highScoreLink = document.querySelector('#highscore-link');
 let headerP = document.querySelector('#header-paragraph');
 let spanSec = document.querySelector('#sec-span');
 // Home
@@ -20,7 +20,7 @@ let feedback = document.querySelector('#feedback');
 let gameOver = document.querySelector('#game-over');
 let retry = document.querySelector('#retry');
 // High Scores list
-let highScoreDiv = document.querySelector('#highScore-div');
+let highScoreDiv = document.querySelector('#highscore-div');
 let scoreList = document.querySelector('#score-list');
 let goBack = document.querySelector('#go-back');
 let clear = document.querySelector('#clear');
@@ -31,15 +31,15 @@ highScoreDiv.style.display = 'none';
 gameOver.style.display = 'none';
 // Questions, answers, and correct answers(user for validation that will be used in quiz. (filler is to prevent length error)
 let questions = {
-    questionArray: ['2+2?', '3+3', '4+4', '5+5', '6+6', 'filler'],
+    questionArray: ['What is the JavaScript function used to add an element to the end of an array?', 'What is the correct HTML tag for creating a hyperlink?', 'Which property is used to set the background color of an element in CSS?', 'What is the DOM method used to create a new HTML element in JavaScript?', 'What method is used to add an item to the local storage in JavaScript?', 'filler'],
 }
-let answers = [['9','6', '4', '10'],['6','7', '20', '100'], ['10','20','30','8'], ['10','20','30','8'], ['10','12','30','8'], 'filler']
-let correctAnswers = ['filler','4', '6', '8', '10', '12'] 
+let answers = [['push()','pop()', 'shift()', 'unshift()'],['<h1>','<p>', '<a>', '<div>'], ['color','background-color','border-color','text-color'], ['createTextNode()','appendChild()','removeChild()','createElement()'], ['getItem()','removeItem()','setItem()','clear()'], 'filler']
+let correctAnswers = ['filler','push()', '<a>', 'background-color', 'createElement()', 'setItem()'] 
 // keeps track od question number to populate div correctly
 let questionCounter = 0;
 // For starting the Quiz timer and setting timer length. Declared timerstart outside so that it can be stopped from anywhere
 let timerStart;
-let secondsLeft = 50;
+let secondsLeft = 100;
 // Used to detrmine final score. Declared timerstart outside so that it can be stopped from anywhere
 let score;
 // startBtn starts timer and presents first question by setting styles, updating counter, and populating question div.

@@ -11,24 +11,24 @@
 <body>
     <!-- header to dsiplay High Scores Link and time left -->
     <header id="header-div">
-        <p id="highScore-link">View High Scores</p>
+        <p id="highscore-link">View High Scores</p>
         <p id="header-paragraph">Time left: <span id="sec-span">N/A</span></p>
     </header>
     <!-- div to display home -->
     <div id="home">
-        <h1>Hello</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sequi molestias suscipit, esse sit possimus, facere ab quaerat, expedita magnam pariatur! Optio eum amet pariatur unde recusandae assumenda accusantium saepe.</p>
+        <h1>Coding Quiz</h1>
+        <p>Welcome to the coding quiz! This quiz is designed to test your knowledge on various programming concepts. Don't worry if you don't get every question right - just do your best and have fun!</p>
         <button id="start">Start</button>
     </div>
     <!-- div to display questions as they are answered -->
     <div id="question">
         <h2 id="question-h1"></h2>
-        <ol>
+        <div>
             <button class="answer"></button>
             <button class="answer"></button>
             <button class="answer"></button>
             <button class="answer"></button>
-        </ol>
+        </div>
     </div>
     <!-- div displayed at the end of the quiz to submit score -->
     <div id="initials">
@@ -47,8 +47,8 @@
         <button id="retry">Retry</button>
     </div>
     <!-- Displays list of high scores. Populated by JS -->
-    <div id="highScore-div">
-        <h4>High Scores</h4>
+    <div id="highscore-div">
+        <h3>High Scores</h3>
         <ol id="score-list">
         </ol>
         <button id="go-back">Go back</button>
