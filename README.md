@@ -7,7 +7,7 @@ The motivation behind this project was to solidify my knowledge of DOM manipulat
 Link to deployed application [here](https://saduhub.github.io/code-quiz/)
 
 ![Screenshot of home page](Assets/pictures/Coding%20quiz%20home%20page.png)
-![Screenshot of highscore page](assets/pictures/Coding%20quiz%20highscores%20page.png)
+![Screenshot of highscore page](Assets/pictures/Coding%20quiz%20highscores%20page.png)
 
 ## Installation
 
