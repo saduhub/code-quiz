@@ -1,0 +1,15 @@
+{
+  "name": "code-quiz",
+  "version": "1.0.0",
+  "description": "The motivation behind this project was to solidify my knowledge of DOM manipulation and web API's. I was to build a code quiz using the knowledge I have regarding DOM manipulation and Javascript. Additionaly, this challenge introduced me to concepts regarding API's. I also learned about the importance of working on a project in stages. I tried using pen and paper to write the steps and basic mock up of my project. This way, I was able to visualize the end product and ensure it was responsive and organized. Finally, I was able to finally understand the window object and its importance in web development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.2"
+  }
+}

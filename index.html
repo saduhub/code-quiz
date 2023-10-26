@@ -4,55 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Assets/styles/reset.css">
     <link rel="stylesheet" href="Assets/styles/styles.css">
     <title>Document</title>
 </head>
 <body>
-    <!-- header to dsiplay High Scores Link and time left -->
-    <header id="header-div">
-        <p id="highscore-link">View High Scores</p>
-        <p id="header-paragraph">Time left: <span id="sec-span">N/A</span></p>
-    </header>
-    <!-- div to display home -->
-    <div id="home">
-        <h1>Coding Quiz</h1>
-        <p>Welcome to the coding quiz! This quiz is designed to test your knowledge on various programming concepts. Don't worry if you don't get every question right - just do your best and have fun!</p>
-        <button id="start">Start</button>
-    </div>
-    <!-- div to display questions as they are answered -->
-    <div id="question">
-        <h2 id="question-h1"></h2>
-        <div id="buttons-question">
-            <button class="answer"></button>
-            <button class="answer"></button>
-            <button class="answer"></button>
-            <button class="answer"></button>
+    <div class="container">
+        <!-- Home Page -->
+        <div class="homePage">
+            
         </div>
-    </div>
-    <!-- div displayed at the end of the quiz to submit score -->
-    <div id="initials">
-        <h3>Quiz completed!</h3>
-        <label for="initials-input">Enter name here:</label>
-        <input type="text" name="initials" id="initials-input" required>
-        <button id="submit">Submit</button>
-    </div>
-    <!-- displays if user got the question right/wrong -->
-    <div>
-        <p id="feedback"></p>
-    </div>
-    <!-- game over display (also used to display if user runs out of time) -->
-    <div id="game-over">
-        <p>Game Over! Your score fell below 0!</p>
-        <button id="retry">Retry</button>
-    </div>
-    <!-- Displays list of high scores. Populated by JS -->
-    <div id="highscore-div">
-        <h3>High Scores</h3>
-        <ol id="score-list">
-        </ol>
-        <button id="go-back">Go back</button>
-        <button id="clear">Clear</button>
     </div>
     <script src="Assets/scripts/app.js"></script>
 </body>

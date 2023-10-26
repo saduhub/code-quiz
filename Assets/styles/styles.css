@@ -1,98 +1,80 @@
+/* Josh W Comeau Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
 body {
-    padding: 50px;
-    background-color: #386641;
-    color: #f2e8cf;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
-/* Header */
-#header-div {
-    padding: 20px;
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+#root, #__next {
+    isolation: isolate;
+}
+/* Font */
+@font-face {
+    font-family: 'Work Sans';
+    src: url('../fonts/WorkSans-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;  
+    font-style: normal;
+}
+
+/* Additional Global Styles */
+body {
+    background-color: rgb(28 25 23);
+    color: white;
+    font-family: 'Work Sans', sans-serif;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: center;
 }
-#header-div > #highscore-link {
-    color: #ccff33;
-}
-#highscore-link:hover {
-    cursor: pointer;
-}
-/* Home */
-#home {
-    text-align: center;
-    padding: 20px;
-}
-#home > p {
-    padding: 20px;
-    max-width: 600px;
-    margin: auto;
-}
-/* Question */
-#question {
-    text-align: center;
-    padding: 20px;
-}
-#question ol {
-    max-width: 400px;
-    margin: auto;
-}
-#buttons-question {
-    margin-top: 20px;
-}
-button {
-  color: #f2e8cf;
-  background-color: #bc4749;
-  font-size: 16px;
-  padding: 12px 24px;
-  margin: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border: none;
-  border-radius: 4px;
-  font-size: large;
-}
-button:hover {
-    background-color: #d85f61; 
-    color: #f0d197;
-  }
-/* Feedback */
-#feedback {
-    max-width: 400px;
-    margin: auto;
-    text-align: center;
-}
-/* Submit Score */
-#initials {
-    text-align: center;
-    padding: 20px;
-}
-#initials * {
-    display: block;
-    margin: 10px auto;
-}
-/* Scores table */
-#highscore-div {
-    text-align: center;
-    padding: 20px;
-}
-#highscore-div h3, #highscore-div ol {
-    display: block;
-    margin: 10px auto;
-    font-size: 24px;
-}
-/* Look good on phones */
-@media (max-width: 540px) {
-    body {
-        padding: 5px;
-    }
 
-    #header-div {
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        margin: auto;
-    }
+#root {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    height: 100vh;           
+    width: 100vw;           
+}
 
-    #header-div p {
-        padding: 10px;
-        text-align: center;
-    }
-  }
+#passwordGeneratorH1{
+    color: aquamarine;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+#passwordGeneratorForm{
+    text-align: center;
+}
+
+#pwConditionsFieldset {
+    display: flex;
+    flex-direction: column;
+}
+
+#generateButton {
+    margin: 1rem auto;
+}
+
+#pwOutput {
+    display: flex;
+    flex-direction: column;
+}
