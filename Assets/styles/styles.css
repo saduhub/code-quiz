@@ -97,7 +97,7 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* margin-top: -75%; */
+    margin-top: -75%;
 }
 /* Additional Global Styles */
 /* Home Page */
@@ -126,7 +126,7 @@ button:hover {
     justify-content: space-evenly;
     align-items: center;
     height: 100%;
-    /* margin-top: -75%; */
+    margin-top: -75%;
 }
 
 .quizHeader {
@@ -158,3 +158,11 @@ button:hover {
     display: none;
 }
 /* Hidden Class - Keep at bottom to avoid overriding. */
+@media (max-height: 600px) {
+    .homePage,
+    .highScorePage,
+    .quizPage,
+    .quizFinishedPage {
+        margin-top: 0;
+    }
+}
