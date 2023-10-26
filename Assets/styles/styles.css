@@ -45,6 +45,8 @@ body {
     flex-direction: column;
     padding: 1rem;
     justify-content: center;
+    align-items: center;
+    height: 75vh;
 }
 
 #root {
@@ -57,4 +59,12 @@ body {
 
 .hidden {
     display: none;
+}
+
+.container {
+    max-width: 500px;
+}
+
+button {
+    display: block;
 }
