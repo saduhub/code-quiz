@@ -55,26 +55,6 @@ body {
     width: 100vw;           
 }
 
-#passwordGeneratorH1{
-    color: aquamarine;
-    margin: 2rem auto;
-    text-align: center;
-}
-
-#passwordGeneratorForm{
-    text-align: center;
-}
-
-#pwConditionsFieldset {
-    display: flex;
-    flex-direction: column;
-}
-
-#generateButton {
-    margin: 1rem auto;
-}
-
-#pwOutput {
-    display: flex;
-    flex-direction: column;
+.hidden {
+    display: none;
 }
