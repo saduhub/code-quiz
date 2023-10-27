@@ -22,6 +22,21 @@ function resetTimer() {
     timer = 4;
     timerP.text(`Time: ${timer}`);
 }
+function saveScores() {
+    const initials = initialsInput.val();
+    const score = timer;
+    const highScores = JSON.parse(localStorage.getItem('highScores') || '[]');
+    highScores.push({ initials: initials, score: score });
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+}
+function displayHighScores() {
+    scoresUl.empty();
+    const highScores = JSON.parse(localStorage.getItem('highScores') || '[]');
+    highScores.sort((a, b) => b.score - a.score);
+    highScores.forEach(score => {
+        scoresUl.append(`<li class="scoresLi">${score.initials} - ${score.score}</li>`); // Initials and score 
+    });
+}
 // Home Page
 const homePage = $('.homePage');
 const takeQuizBtn = $('#takeQuizBtn');
@@ -34,9 +49,11 @@ takeQuizBtn.on('click', function () {
 navigateToScoresBtn.on('click', function () {
     homePage.addClass('hidden');
     highScorePage.removeClass('hidden');
+    displayHighScores();
 });
 // High Score Page
 const highScorePage = $('.highScorePage');
+const scoresUl = $('.scoresUl');
 const resetScoreBtn = $('#resetScoreBtn');
 const navigateHomeBtn = $('#navigateHomeBtnScores');
 navigateHomeBtn.on('click', function () {
@@ -57,11 +74,7 @@ const navigateHomeBtnFinish = $('#navigateHomeBtnFinish');
 initialsBtn.on('click', function () {
     quizFinishedPage.addClass('hidden');
     homePage.removeClass('hidden');
-    const initials = initialsInput.val();
-    const score = timer;
-    const highScores = JSON.parse(localStorage.getItem('highScores') || '[]');
-    highScores.push({ initials: initials, score: score });
-    localStorage.setItem('highScores', JSON.stringify(highScores));
+    saveScores();
     resetTimer();
 });
 navigateHomeBtnFinish.on('click', function () {
