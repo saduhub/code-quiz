@@ -1,3 +1,28 @@
+// Global Variables
+let timer: number = 4;
+let timerP: JQuery<HTMLElement> = $('.timer');
+timerP.text(`Time: ${timer}`);
+
+// Global Functions
+function startTimer(): void {
+
+    const countdown = setInterval(() => {
+        timer--;
+        timerP.text(`Time: ${timer}`);
+
+        if (timer <= 0) {
+            clearInterval(countdown);  
+            endQuiz();
+            timer = 4;
+            timerP.text(`Time: ${timer}`);
+        }
+    }, 1000); 
+}
+
+function endQuiz(): void {
+    quizPage.addClass('hidden');
+    quizFinishedPage.removeClass('hidden');
+}
 // Home Page
 const homePage: JQuery<HTMLElement> = $('.homePage');
 const takeQuizBtn: JQuery<HTMLElement> = $('#takeQuizBtn')
@@ -6,6 +31,7 @@ const navigateToScoresBtn: JQuery<HTMLElement> = $('#navigateToScoresBtn')
 takeQuizBtn.on('click', function(): void {
     homePage.addClass('hidden')
     quizPage.removeClass('hidden')
+    startTimer();
 });
 
 navigateToScoresBtn.on('click', function(): void {
@@ -27,8 +53,7 @@ const quizPage: JQuery<HTMLElement> = $('.quizPage');
 const navigateHomeBtnQuiz: JQuery<HTMLElement> = $('#navigateHomeBtnQuiz')
 
 navigateHomeBtnQuiz.on('click', function(): void {
-    quizPage.addClass('hidden')
-    homePage.removeClass('hidden')
+    location.reload();
 });
 // Quiz Finished Page
 const quizFinishedPage: JQuery<HTMLElement> = $('.quizFinishedPage');

@@ -136,6 +136,14 @@ button:hover {
     margin-bottom: 3rem;
 }
 
+.timer {
+    width: 80px;
+    text-align: left; 
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
 .navigateHomeBtn {
     width: 100px;
     margin: 0 4rem 0 0;
