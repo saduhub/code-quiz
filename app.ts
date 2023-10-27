@@ -2,7 +2,11 @@
 let timer: number = 4;
 let timerP: JQuery<HTMLElement> = $('.timer');
 timerP.text(`Time: ${timer}`);
-
+// Types
+type HighScore = {
+    initials: string;
+    score: number;
+};
 // Global Functions
 function startTimer(): void {
 
@@ -13,8 +17,6 @@ function startTimer(): void {
         if (timer <= 0) {
             clearInterval(countdown);  
             endQuiz();
-            timer = 4;
-            timerP.text(`Time: ${timer}`);
         }
     }, 1000); 
 }
@@ -22,6 +24,11 @@ function startTimer(): void {
 function endQuiz(): void {
     quizPage.addClass('hidden');
     quizFinishedPage.removeClass('hidden');
+}
+
+function resetTimer(): void {
+    timer = 4;
+    timerP.text(`Time: ${timer}`);
 }
 // Home Page
 const homePage: JQuery<HTMLElement> = $('.homePage');
@@ -57,17 +64,26 @@ navigateHomeBtnQuiz.on('click', function(): void {
 });
 // Quiz Finished Page
 const quizFinishedPage: JQuery<HTMLElement> = $('.quizFinishedPage');
+const initialsInput: JQuery<HTMLElement> = $('.initialsInput');
 const initialsBtn: JQuery<HTMLElement> = $('#initialsBtn')
 const navigateHomeBtnFinish: JQuery<HTMLElement> = $('#navigateHomeBtnFinish')
 
 initialsBtn.on('click', function(): void {
     quizFinishedPage.addClass('hidden')
     homePage.removeClass('hidden')
+    const initials: string  = initialsInput.val() as string;
+    const score: number = timer;
+    const highScores: HighScore[] = JSON.parse(localStorage.getItem('highScores') || '[]');
+
+    highScores.push({ initials: initials, score: score });
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    resetTimer();
 });
 
 navigateHomeBtnFinish.on('click', function(): void {
     quizFinishedPage.addClass('hidden')
     homePage.removeClass('hidden')
+    resetTimer();
 });
 // On load
 // homePage.addClass('hidden')

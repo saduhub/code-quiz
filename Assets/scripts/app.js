@@ -11,14 +11,16 @@ function startTimer() {
         if (timer <= 0) {
             clearInterval(countdown);
             endQuiz();
-            timer = 4;
-            timerP.text(`Time: ${timer}`);
         }
     }, 1000);
 }
 function endQuiz() {
     quizPage.addClass('hidden');
     quizFinishedPage.removeClass('hidden');
+}
+function resetTimer() {
+    timer = 4;
+    timerP.text(`Time: ${timer}`);
 }
 // Home Page
 const homePage = $('.homePage');
@@ -49,15 +51,23 @@ navigateHomeBtnQuiz.on('click', function () {
 });
 // Quiz Finished Page
 const quizFinishedPage = $('.quizFinishedPage');
+const initialsInput = $('.initialsInput');
 const initialsBtn = $('#initialsBtn');
 const navigateHomeBtnFinish = $('#navigateHomeBtnFinish');
 initialsBtn.on('click', function () {
     quizFinishedPage.addClass('hidden');
     homePage.removeClass('hidden');
+    const initials = initialsInput.val();
+    const score = timer;
+    const highScores = JSON.parse(localStorage.getItem('highScores') || '[]');
+    highScores.push({ initials: initials, score: score });
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    resetTimer();
 });
 navigateHomeBtnFinish.on('click', function () {
     quizFinishedPage.addClass('hidden');
     homePage.removeClass('hidden');
+    resetTimer();
 });
 // On load
 // homePage.addClass('hidden')
