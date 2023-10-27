@@ -21,7 +21,7 @@
             <button type="button" id="navigateToScoresBtn" class="btn">View High Scores</button>
         </div>
         <!-- High Score Page -->
-        <div class="highScorePage hidden">
+        <div class="highScorePage">
             <h2 class="highScoreH2">High Scores</h2>
             <p class="highScoreP">Can you top the chart?</p>
             <ul class="scoresUl">
@@ -30,13 +30,13 @@
                 <li class="scoresLi">User2 - 10</li>
             </ul>
             <button type="button" id="resetScoreBtn" class="btn">Reset Scores</button>
-            <button type="button" id="navigateHomeBtn" class="btn">Back to Home</button>
+            <button type="button" id="navigateHomeBtnScores" class="btn">Back to Home</button>
         </div>
         <!-- Quiz Page -->
-        <div class="quizPage hidden">
+        <div class="quizPage">
             <!-- Timer and Home button -->
             <div class="quizHeader">
-                <button type="button" class="navigateHomeBtn">Home</button>
+                <button type="button" class="navigateHomeBtn" id="navigateHomeBtnQuiz">Home</button>
                 <p class="timer">Time: 100</p>
             </div>
             <div class="questionContainer">
@@ -49,12 +49,13 @@
             </div>
         </div>
         <!-- Quiz Finished Page -->
-        <div class="quizFinishedPage hidden">
+        <div class="quizFinishedPage">
             <h2 class="quizFinishedH2">All Done!</h2>
             <p class="quizP">Input your initials and submit your score!</p>
             <label for="enterInitials">Enter Initials:</label>
             <input type="text" name="enterInitials" class="initialsInput">
             <button type="button" id="initialsBtn" class="btn">Submit!</button>
+            <button type="button" id="navigateHomeBtnFinish">Home</button>
         </div>
     </div>
     <script type="module" src="./Assets/scripts/app.js"></script>
