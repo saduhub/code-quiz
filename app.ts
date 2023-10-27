@@ -74,6 +74,11 @@ const scoresUl: JQuery<HTMLElement> = $('.scoresUl');
 const resetScoreBtn: JQuery<HTMLElement> = $('#resetScoreBtn');
 const navigateHomeBtn: JQuery<HTMLElement> = $('#navigateHomeBtnScores');
 
+resetScoreBtn.on('click', function(): void {
+    scoresUl.empty();
+    localStorage.removeItem('highScores');
+});
+
 navigateHomeBtn.on('click', function(): void {
     highScorePage.addClass('hidden');
     homePage.removeClass('hidden');

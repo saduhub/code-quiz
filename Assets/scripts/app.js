@@ -34,7 +34,7 @@ function displayHighScores() {
     const highScores = JSON.parse(localStorage.getItem('highScores') || '[]');
     highScores.sort((a, b) => b.score - a.score);
     highScores.forEach(score => {
-        scoresUl.append(`<li class="scoresLi">${score.initials} - ${score.score}</li>`); // Initials and score 
+        scoresUl.append(`<li class="scoresLi">${score.initials} - ${score.score}</li>`);
     });
 }
 // Home Page
@@ -56,6 +56,10 @@ const highScorePage = $('.highScorePage');
 const scoresUl = $('.scoresUl');
 const resetScoreBtn = $('#resetScoreBtn');
 const navigateHomeBtn = $('#navigateHomeBtnScores');
+resetScoreBtn.on('click', function () {
+    scoresUl.empty();
+    localStorage.removeItem('highScores');
+});
 navigateHomeBtn.on('click', function () {
     highScorePage.addClass('hidden');
     homePage.removeClass('hidden');
