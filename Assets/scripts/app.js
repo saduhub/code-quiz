@@ -1,8 +1,18 @@
 "use strict";
 // Global Variables
-let timer = 4;
+let timer = 400;
 let timerP = $('.timer');
 timerP.text(`Time: ${timer}`);
+let questionNumber = 0;
+const questions = [
+    {
+        question: 'knock knock',
+        correct: 'who is there?',
+        choice1: 'what?',
+        choice2: '****',
+        choice3: 'Come back later',
+    }
+];
 // Global Functions
 function startTimer() {
     const countdown = setInterval(() => {
@@ -19,7 +29,7 @@ function endQuiz() {
     quizFinishedPage.removeClass('hidden');
 }
 function resetTimer() {
-    timer = 4;
+    timer = 400;
     timerP.text(`Time: ${timer}`);
 }
 function saveScores() {
@@ -37,6 +47,19 @@ function displayHighScores() {
         scoresUl.append(`<li class="scoresLi">${score.initials} - ${score.score}</li>`);
     });
 }
+function generateQuestions() {
+    const questionValue = questions[questionNumber].question;
+    const choice1Value = questions[questionNumber].choice1;
+    const choice2Value = questions[questionNumber].choice2;
+    const choice3Value = questions[questionNumber].choice3;
+    const correctValue = questions[questionNumber].correct;
+    questionCounter.text(`Question ${questionNumber + 1}`);
+    question.text(questionValue);
+    wrong1.text(choice1Value);
+    wrong2.text(choice2Value);
+    wrong3.text(choice3Value);
+    right.text(correctValue);
+}
 // Home Page
 const homePage = $('.homePage');
 const takeQuizBtn = $('#takeQuizBtn');
@@ -45,6 +68,7 @@ takeQuizBtn.on('click', function () {
     homePage.addClass('hidden');
     quizPage.removeClass('hidden');
     startTimer();
+    generateQuestions();
 });
 navigateToScoresBtn.on('click', function () {
     homePage.addClass('hidden');
@@ -66,7 +90,13 @@ navigateHomeBtn.on('click', function () {
 });
 // Quiz Page
 const quizPage = $('.quizPage');
+const questionCounter = $('.quizH2');
+const question = $('.quizP');
 const navigateHomeBtnQuiz = $('#navigateHomeBtnQuiz');
+const wrong1 = $('#wrong1');
+const wrong2 = $('#wrong2');
+const wrong3 = $('#wrong3');
+const right = $('#right');
 navigateHomeBtnQuiz.on('click', function () {
     location.reload();
 });
