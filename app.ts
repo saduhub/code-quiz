@@ -1,7 +1,7 @@
 // Global Variables
 let quizDuration: number = 100
 let timer: number = quizDuration;
-let timerP: JQuery<HTMLElement> = $('.timer');
+let timerP: JQuery<HTMLParagraphElement> = $('.timer');
 timerP.text(`Time: ${timer}`);
 let questionNumber: number = 0; 
 let savedScore: number;
@@ -153,9 +153,9 @@ function displayFeedback(isCorrect: boolean): void {
     }, 2000);
 }
 // Home Page
-const homePage: JQuery<HTMLElement> = $('.homePage');
-const takeQuizBtn: JQuery<HTMLElement> = $('#takeQuizBtn');
-const navigateToScoresBtn: JQuery<HTMLElement> = $('#navigateToScoresBtn');
+const homePage: JQuery<HTMLDivElement> = $('.homePage');
+const takeQuizBtn: JQuery<HTMLButtonElement> = $('#takeQuizBtn');
+const navigateToScoresBtn: JQuery<HTMLButtonElement> = $('#navigateToScoresBtn');
 
 takeQuizBtn.on('click', function(): void {
     homePage.addClass('hidden');
@@ -171,10 +171,10 @@ navigateToScoresBtn.on('click', function(): void {
 });
 
 // High Score Page
-const highScorePage: JQuery<HTMLElement> = $('.highScorePage');
-const scoresUl: JQuery<HTMLElement> = $('.scoresUl');
-const resetScoreBtn: JQuery<HTMLElement> = $('#resetScoreBtn');
-const navigateHomeBtn: JQuery<HTMLElement> = $('#navigateHomeBtnScores');
+const highScorePage: JQuery<HTMLDivElement> = $('.highScorePage');
+const scoresUl: JQuery<HTMLUListElement> = $('.scoresUl');
+const resetScoreBtn: JQuery<HTMLButtonElement> = $('#resetScoreBtn');
+const navigateHomeBtn: JQuery<HTMLButtonElement> = $('#navigateHomeBtnScores');
 
 resetScoreBtn.on('click', function(): void {
     scoresUl.empty();
@@ -186,16 +186,16 @@ navigateHomeBtn.on('click', function(): void {
     homePage.removeClass('hidden');
 });
 // Quiz Page
-const quizPage: JQuery<HTMLElement> = $('.quizPage');
-const questionCounter: JQuery<HTMLElement> = $('.quizH2');
+const quizPage: JQuery<HTMLDivElement> = $('.quizPage');
+const questionCounter: JQuery<HTMLHeadingElement> = $('.quizH2');
 const question: JQuery<HTMLParagraphElement> = $('.quizP');
-const navigateHomeBtnQuiz: JQuery<HTMLElement> = $('#navigateHomeBtnQuiz');
+const navigateHomeBtnQuiz: JQuery<HTMLButtonElement> = $('#navigateHomeBtnQuiz');
 const feedBack: JQuery<HTMLParagraphElement> = $('#feedBack');
 const optionBtn: JQuery<HTMLButtonElement> = $('.optionBtn');
-const wrong1: JQuery<HTMLElement> = $('#wrong1');
-const wrong2: JQuery<HTMLElement> = $('#wrong2');
-const wrong3: JQuery<HTMLElement> = $('#wrong3');
-const right: JQuery<HTMLElement> = $('#right');
+const wrong1: JQuery<HTMLButtonElement> = $('#wrong1');
+const wrong2: JQuery<HTMLButtonElement> = $('#wrong2');
+const wrong3: JQuery<HTMLButtonElement> = $('#wrong3');
+const right: JQuery<HTMLButtonElement> = $('#right');
 
 navigateHomeBtnQuiz.on('click', function(): void {
     location.reload();
@@ -219,11 +219,11 @@ optionBtn.on('click', function(this: HTMLButtonElement): void {
     }
 });
 // Quiz Finished Page
-const quizFinishedPage: JQuery<HTMLElement> = $('.quizFinishedPage');
-const finalScore: JQuery<HTMLElement> = $('#finalScore');
-const initialsInput: JQuery<HTMLElement> = $('.initialsInput');
-const initialsBtn: JQuery<HTMLElement> = $('#initialsBtn');
-const navigateHomeBtnFinish: JQuery<HTMLElement> = $('#navigateHomeBtnFinish');
+const quizFinishedPage: JQuery<HTMLDivElement> = $('.quizFinishedPage');
+const finalScore: JQuery<HTMLHeadingElement> = $('#finalScore');
+const initialsInput: JQuery<HTMLInputElement> = $('.initialsInput');
+const initialsBtn: JQuery<HTMLButtonElement> = $('#initialsBtn');
+const navigateHomeBtnFinish: JQuery<HTMLButtonElement> = $('#navigateHomeBtnFinish');
 
 initialsBtn.on('click', function(): void {
     quizFinishedPage.addClass('hidden');
