@@ -4,56 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Assets/styles/reset.css">
     <link rel="stylesheet" href="Assets/styles/styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
-    <!-- header to dsiplay High Scores Link and time left -->
-    <header id="header-div">
-        <p id="highscore-link">View High Scores</p>
-        <p id="header-paragraph">Time left: <span id="sec-span">N/A</span></p>
-    </header>
-    <!-- div to display home -->
-    <div id="home">
-        <h1>Coding Quiz</h1>
-        <p>Welcome to the coding quiz! This quiz is designed to test your knowledge on various programming concepts. Don't worry if you don't get every question right - just do your best and have fun!</p>
-        <button id="start">Start</button>
-    </div>
-    <!-- div to display questions as they are answered -->
-    <div id="question">
-        <h2 id="question-h1"></h2>
-        <div id="buttons-question">
-            <button class="answer"></button>
-            <button class="answer"></button>
-            <button class="answer"></button>
-            <button class="answer"></button>
+    <div class="container">
+        <!-- Home Page -->
+        <div class="homePage">
+            <div class="coderDiv">
+                <img src="./Assets/pictures/Coder.png" alt="Animated Picture of Coding Student" class="coderImg">
+            </div>
+            <h1 class="homeH1">CodeQuiz</h1>
+            <p class="homeP">Test your coding knowledge!</p>
+            <button type="button" id="takeQuizBtn" class="btn">Take quiz!</button>
+            <button type="button" id="navigateToScoresBtn" class="btn">View High Scores</button>
+        </div>
+        <!-- High Score Page -->
+        <div class="highScorePage">
+            <h2 class="highScoreH2">High Scores</h2>
+            <p class="highScoreP">Can you top the chart?</p>
+            <ul class="scoresUl">
+                <!-- <li class="scoresLi">User3 - 20</li>
+                <li class="scoresLi">User1 - 15</li>
+                <li class="scoresLi">User2 - 10</li> -->
+            </ul>
+            <button type="button" id="resetScoreBtn" class="btn">Reset Scores</button>
+            <button type="button" id="navigateHomeBtnScores" class="btn">Back to Home</button>
+        </div>
+        <!-- Quiz Page -->
+        <div class="quizPage">
+            <!-- Timer and Home button -->
+            <div class="quizHeader">
+                <button type="button" class="navigateHomeBtn" id="navigateHomeBtnQuiz">Quit</button>
+                <p class="timer">Time: </p>
+            </div>
+            <div class="questionContainer">
+                <h2 class="quizH2">Question #</h2>
+                <p class="quizP">What is TypeScript?</p>
+                <div class="quizChoicesDiv">
+                    <button type="button" class="optionBtn" id="wrong1">Option</button>
+                    <button type="button" class="optionBtn" id="wrong2">Option</button>
+                    <button type="button" class="optionBtn" id="right">Option</button>
+                    <button type="button" class="optionBtn" id="wrong3">Option</button>
+                </div>
+                <p id="feedBack">feedback</p>
+            </div>
+        </div>
+        <!-- Quiz Finished Page -->
+        <div class="quizFinishedPage">
+            <h2 class="quizFinishedH2">All Done!</h2>
+            <h3 id="finalScore">Score: </h3>
+            <p class="quizP">Input your initials and submit your score!</p>
+            <label for="enterInitials">Enter Initials:</label>
+            <input type="text" name="enterInitials" class="initialsInput">
+            <button type="button" id="initialsBtn" class="btn">Submit!</button>
+            <button type="button" id="navigateHomeBtnFinish">Home</button>
         </div>
     </div>
-    <!-- div displayed at the end of the quiz to submit score -->
-    <div id="initials">
-        <h3>Quiz completed!</h3>
-        <label for="initials-input">Enter name here:</label>
-        <input type="text" name="initials" id="initials-input" required>
-        <button id="submit">Submit</button>
-    </div>
-    <!-- displays if user got the question right/wrong -->
-    <div>
-        <p id="feedback"></p>
-    </div>
-    <!-- game over display (also used to display if user runs out of time) -->
-    <div id="game-over">
-        <p>Game Over! Your score fell below 0!</p>
-        <button id="retry">Retry</button>
-    </div>
-    <!-- Displays list of high scores. Populated by JS -->
-    <div id="highscore-div">
-        <h3>High Scores</h3>
-        <ol id="score-list">
-        </ol>
-        <button id="go-back">Go back</button>
-        <button id="clear">Clear</button>
-    </div>
-    <script src="Assets/scripts/app.js"></script>
+    <script type="module" src="./Assets/scripts/app.js"></script>
 </body>
 </html>
