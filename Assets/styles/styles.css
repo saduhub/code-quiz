@@ -160,18 +160,16 @@ button:hover {
     align-items: center;
     justify-content: center;
 }
+
+#feedBack {
+    margin-top: 1rem;
+    color: rgb(28 25 23);
+}
+
 /* Quiz Finished Page */
 .quizP {
     margin: 2rem 0;
 }
-
-/* #finalScore {
-    width: 80px;
-    text-align: left; 
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-} */
 
 .initialsInput {
     width: 200px;

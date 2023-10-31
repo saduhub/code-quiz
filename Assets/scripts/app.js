@@ -117,6 +117,19 @@ function generateQuestions() {
         return;
     }
 }
+function displayFeedback(isCorrect) {
+    if (isCorrect) {
+        feedBack.css('color', 'green');
+        feedBack.text('Correct!');
+    }
+    else {
+        feedBack.css('color', 'red');
+        feedBack.text('Wrong!');
+    }
+    setTimeout(() => {
+        feedBack.css('color', 'rgb(28 25 23)');
+    }, 2000);
+}
 // Home Page
 const homePage = $('.homePage');
 const takeQuizBtn = $('#takeQuizBtn');
@@ -150,6 +163,7 @@ const quizPage = $('.quizPage');
 const questionCounter = $('.quizH2');
 const question = $('.quizP');
 const navigateHomeBtnQuiz = $('#navigateHomeBtnQuiz');
+const feedBack = $('#feedBack');
 const optionBtn = $('.optionBtn');
 const wrong1 = $('#wrong1');
 const wrong2 = $('#wrong2');
@@ -159,7 +173,9 @@ navigateHomeBtnQuiz.on('click', function () {
     location.reload();
 });
 optionBtn.on('click', function () {
-    if ($(this).text() !== questions[questionNumber].correct) {
+    const isAnswerCorrect = $(this).text() === questions[questionNumber].correct;
+    displayFeedback(isAnswerCorrect);
+    if (!isAnswerCorrect) {
         timer -= 5;
     }
     questionNumber++;

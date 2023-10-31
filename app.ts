@@ -138,6 +138,20 @@ function generateQuestions(): void {
         return;
     }
 }
+
+function displayFeedback(isCorrect: boolean): void {
+    if (isCorrect) {
+        feedBack.css('color', 'green');
+        feedBack.text('Correct!');
+    } else {
+        feedBack.css('color', 'red');
+        feedBack.text('Wrong!');
+    }
+
+    setTimeout(() => {
+        feedBack.css('color', 'rgb(28 25 23)');
+    }, 2000);
+}
 // Home Page
 const homePage: JQuery<HTMLElement> = $('.homePage');
 const takeQuizBtn: JQuery<HTMLElement> = $('#takeQuizBtn');
@@ -176,6 +190,7 @@ const quizPage: JQuery<HTMLElement> = $('.quizPage');
 const questionCounter: JQuery<HTMLElement> = $('.quizH2');
 const question: JQuery<HTMLParagraphElement> = $('.quizP');
 const navigateHomeBtnQuiz: JQuery<HTMLElement> = $('#navigateHomeBtnQuiz');
+const feedBack: JQuery<HTMLParagraphElement> = $('#feedBack');
 const optionBtn: JQuery<HTMLButtonElement> = $('.optionBtn');
 const wrong1: JQuery<HTMLElement> = $('#wrong1');
 const wrong2: JQuery<HTMLElement> = $('#wrong2');
@@ -187,7 +202,10 @@ navigateHomeBtnQuiz.on('click', function(): void {
 });
 
 optionBtn.on('click', function(this: HTMLButtonElement): void {
-    if ($(this).text() !== questions[questionNumber].correct) {
+    const isAnswerCorrect = $(this).text() === questions[questionNumber].correct;
+    displayFeedback(isAnswerCorrect);
+
+    if (!isAnswerCorrect) {
         timer -= 5; 
     }
 
