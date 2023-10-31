@@ -1,5 +1,6 @@
 // Global Variables
-let timer: number = 40;
+let quizDuration: number = 100
+let timer: number = quizDuration;
 let timerP: JQuery<HTMLElement> = $('.timer');
 timerP.text(`Time: ${timer}`);
 let questionNumber: number = 0; 
@@ -73,10 +74,11 @@ function startTimer(): void {
 function endQuiz(): void {
     quizPage.addClass('hidden');
     quizFinishedPage.removeClass('hidden');
+    question.text('Input your initials and submit your score!');
 }
 
 function resetTimer(): void {
-    timer = 40;
+    timer = quizDuration;
     timerP.text(`Time: ${timer}`);
 }
 
@@ -98,7 +100,17 @@ function displayHighScores(): void {
 
     const highScores: HighScore[] = JSON.parse(localStorage.getItem('highScores') || '[]');
 
-    highScores.sort((a, b) => b.score - a.score);
+    highScores.sort((a, b) => {
+        if (typeof a.score !== 'number' && typeof b.score !== 'number') {
+            return 0; // No change
+        } else if (typeof a.score !== 'number') {
+            return 1; // A under B
+        } else if (typeof b.score !== 'number') {
+            return -1; // B under A
+        } else {
+            return b.score - a.score; // Sort descending since both are numbers. 
+        }
+    });
 
     highScores.forEach(score => {
         if (typeof score.score !== 'number') {
@@ -174,17 +186,23 @@ navigateHomeBtnQuiz.on('click', function(): void {
     location.reload();
 });
 
-optionBtn.on('click', function(): void {
+optionBtn.on('click', function(this: HTMLButtonElement): void {
+    if ($(this).text() !== questions[questionNumber].correct) {
+        timer -= 5; 
+    }
+
     questionNumber++;
     generateQuestions();
 
     if (questionNumber >= questions.length) {
         savedScore = timer;
         timer = 0;  
+        finalScore.text(`Score: ${savedScore}`);
     }
 });
 // Quiz Finished Page
 const quizFinishedPage: JQuery<HTMLElement> = $('.quizFinishedPage');
+const finalScore: JQuery<HTMLElement> = $('#finalScore');
 const initialsInput: JQuery<HTMLElement> = $('.initialsInput');
 const initialsBtn: JQuery<HTMLElement> = $('#initialsBtn');
 const navigateHomeBtnFinish: JQuery<HTMLElement> = $('#navigateHomeBtnFinish');

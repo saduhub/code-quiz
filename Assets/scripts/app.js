@@ -1,6 +1,7 @@
 "use strict";
 // Global Variables
-let timer = 40;
+let quizDuration = 100;
+let timer = quizDuration;
 let timerP = $('.timer');
 timerP.text(`Time: ${timer}`);
 let questionNumber = 0;
@@ -56,9 +57,10 @@ function startTimer() {
 function endQuiz() {
     quizPage.addClass('hidden');
     quizFinishedPage.removeClass('hidden');
+    question.text('Input your initials and submit your score!');
 }
 function resetTimer() {
-    timer = 40;
+    timer = quizDuration;
     timerP.text(`Time: ${timer}`);
 }
 function resetQuestionNumber() {
@@ -74,7 +76,20 @@ function saveScores() {
 function displayHighScores() {
     scoresUl.empty();
     const highScores = JSON.parse(localStorage.getItem('highScores') || '[]');
-    highScores.sort((a, b) => b.score - a.score);
+    highScores.sort((a, b) => {
+        if (typeof a.score !== 'number' && typeof b.score !== 'number') {
+            return 0; // No change
+        }
+        else if (typeof a.score !== 'number') {
+            return 1; // A under B
+        }
+        else if (typeof b.score !== 'number') {
+            return -1; // B under A
+        }
+        else {
+            return b.score - a.score; // Sort descending since both are numbers. 
+        }
+    });
     highScores.forEach(score => {
         if (typeof score.score !== 'number') {
             scoresUl.append(`<li class="scoresLi">${score.initials} - DNF! </li>`);
@@ -144,15 +159,20 @@ navigateHomeBtnQuiz.on('click', function () {
     location.reload();
 });
 optionBtn.on('click', function () {
+    if ($(this).text() !== questions[questionNumber].correct) {
+        timer -= 5;
+    }
     questionNumber++;
     generateQuestions();
     if (questionNumber >= questions.length) {
         savedScore = timer;
         timer = 0;
+        finalScore.text(`Score: ${savedScore}`);
     }
 });
 // Quiz Finished Page
 const quizFinishedPage = $('.quizFinishedPage');
+const finalScore = $('#finalScore');
 const initialsInput = $('.initialsInput');
 const initialsBtn = $('#initialsBtn');
 const navigateHomeBtnFinish = $('#navigateHomeBtnFinish');
